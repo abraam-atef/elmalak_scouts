@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/all.css">
+	<style>
+		* {
+			user-select: none;
+			direction: rtl;
+		}
+
+		::-webkit-scrollbar {
+			width: 0;
+		}
+
+		body {
+			overflow-x: hidden;
+		}
+
+		#his,
+		#inf {
+			width: 100%;
+			z-index: 9999;
+			background-color: #fff;
+			position: absolute;
+			top: 0;
+			transition: 0.3s ease;
+			overflow-x: hidden;
+		}
+
+		#his {
+			height: 100%;
+			right: 120%;
+		}
+
+		#inf {
+			height: 100%;
+			left: 120%;
+		}
+
+		#his #sq,
+		#inf #sq {
+			background-color: #fff;
+			width: 100%;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+			text-transform: uppercase;
+			position: fixed;
+			z-index: 100000;
+		}
+
+
+		#his div {
+			width: 90%;
+			margin: 10% 5% auto;
+		}
+
+		#his div h1 {
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		#his h1 span,
+		#inf h1 span {
+			font-size: 25px;
+			margin-top: 2px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		#his h1 span:hover,
+		#inf h1 span:hover {
+			opacity: 0.8;
+		}
+
+		#inf #fst {
+			margin-top: 50px;
+		}
+
+		#inf img {
+			width: 100%;
+		}
+
+		#clall {
+			display: none;
+		}
+
+		#infbtn,
+		#hisbtn,
+		#clr,
+		#mod {
+			transition: 0.5s;
+		}
+
+		#infbtn:hover,
+		#hisbtn:hover,
+		#clr:hover,
+		#mod:hover {
+			transform: scale(1.02);
+		}
+	</style>
+	<title>scouts app</title>
+</head>
+
+<body class="bg-dark text-white">
+	<div id="conn" class="container position-fixed">
+		<div class="navbar navbar-expand-xxl navbar-dark bg-dark">
+			<a href="" class="navbar-brand fs-1">الشفرات</a>
+			<a href="#navs" data-bs-toggle="collapse" class="navbar-toggler shadow-none border-0 fs-1">
+				<i class="navbar-toggler-icon"></i>
+			</a>
+			<div id="navs" class="collapse navbar-collapse">
+				<ul class="navbar-nav">
+					<li class="nav-item my-2 d-flex align-items-center justify-content-between" id="infbtn"><button
+						class="btn btn-outline-primary btn-lg rounded-circle"><i
+							class="fas fa-clipboard"></i></button>
+						<h2>information page</h2>
+					</li>
+					<li id="clr" class="nav-item my-2 d-flex align-items-center justify-content-between"><button
+						class="btn btn-outline-primary btn-lg rounded-circle"><i class="fas fa-trash"></i></button>
+						<h2>clear the page</h2>
+					</li>
+					<li id="hisbtn" class="nav-item my-2 d-flex align-items-center justify-content-between"><button
+						class="btn btn-outline-primary btn-lg rounded-circle"><i
+							class="fas fa-history"></i></button>
+						<h2>history page</h2>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+		<label for="select" class="form-label" id="h1">الشفرات الكشفية</label>
+		<!-- <input type="text" id="select" placeholder="choose the bland" class="form-control" list="selectt"> -->
+		<select class="form-select form-select-lg text-white bg-dark" id="select">
+			<option value="الشفرات الكشفية">........</option>
+			<option value="الشفرة الرقمية">الشفرة الرقمية</option>
+			<option value="شفرة المراية">شفرة المراية</option>
+			<option value="شفرة الدومنة">شفرة الدومنة</option>
+			<option value="الشفرة المربعة">الشفرة المربعة</option>
+			<option value="شفرة اكس">شفرة اكس</option>
+			<option value="شفرة الاحداثيات">شفرة الاحداثيات</option>
+			<option value="الشفرة المثلثة">الشفرة المثلثة</option>
+			<option value="شفرة الشرطة">شفرة الشرطة</option>
+		</select>
+		<!-- end nav bar -->
+		<!-- values -->
+		<input type="text" id="inp" class="form-control text-white bg-dark form-control-lg my-3" placeholder="اكتب الشفرة">
+		<div class="d-grid gap-2">
+			<button class="btn btn-primary btn-lg" id="btn">click</button>
+		</div>
+
+
+		<div class="mt-4" id="bland">
+
+		</div>
+	</div>
+	<!-- hestory div -->
+	<div id="his" class="bg-dark text-white">
+		<h1 id="sq" class="bg-dark text-white"><span id="hiscbtn"><i class="fas fa-close"></i></span> the history</h1>
+		<div class="container d-grid gap-2">
+			<button id="clall" class="btn btn-outline-primary my-3">clear all</button>
+		</div>
+		<div id="hisa"></div>
+	</div>
+	<div id="inf" class="container bg-dark text-white">
+		<h1 id="sq" class="bg-dark text-white"><span id="infcbtn"><i class="fas fa-close"></i></span> information page
+		</h1>
+		<div class="card bg-dark text-white" id="fst">
+			<h1 class="card-header">شفرةالدومنة</h1>
+			<div class="card-body">
+				<img src="bland/domino.PNG" alt="">
+				<p class="card-text">
+					ركز ان الرقم الي فوق هو الي بيتكتب الاول
+				</p>
+				<h5 class="card-text">لو عاوز تجرب:</h5>
+				<p class="card-text">
+					44 33 11 = لغد
+				</p>
+			</div>
+		</div>
+		<hr>
+		<div class="card bg-dark text-white" id="fst">
+			<h1 class="card-header">الشفرة الرقمية</h1>
+			<div class="card-body">
+				<p>
+					ترتيب الرقام هو نفس ترتيب الحروف
+				</p>
+				<h5>لو عاوز تجرب:</h5>
+				<p>
+					24 28 25 1 = مينا
+				</p>
+			</div>
+		</div>
+		<hr>
+		<div class="card bg-dark text-white" id="fst">
+			<h1 class="card-header">شفرة اكس</h1>
+			<div class="card-body">
+				<img src="bland/x.PNG" alt="">
+				<p>
+					شفرة اكس من اجمل الشفرات و في منها نوعين:
+				</p>
+				<p>
+					نوع بيمشي مع عقارب الساعة زي الي في الصورة ,و النوع التاني عكس عقار الساعة
+				</p>
+				<p>
+					علشان تكتب الشفرة بتكتب رقم المثلث و بعد كدة بتكتب الرقم الي هو طالبة منك
+				</p>
+				<p class="alert alert-danger">
+					بس اهم حاجة تركز في نوع الشفرة!!!
+				</p>
+				<h5>لو عاوز تجرب:</h5>
+				<p>
+					41 26 11 36 45 = كشافة
+				</p>
+			</div>
+		</div>
+		<hr>
+		<div class="card bg-dark text-white" id="fst">
+			<h1 class="card-header">شفرة المراية(المعكوسة)</h1>
+			<div class="card-body">
+				<p>
+					الشفرة عبارة عن الحروف و الي بتقابلها من الجمب التاني فهتلاقي حرف زي (ا) بيساوي في الجنب التاني (ض)
+				</p>
+				<p class="alert alert-info">
+					متساش الفواصل بين الحروف <i class="fas fa-face-smile-beam"></i>
+				</p>
+				<h5>لو عاوز تجرب:</h5>
+				<p>
+					ر ث ه د م = معسكر
+				</p>
+			</div>
+		</div>
+		<hr>
+		<div class="card bg-dark text-white" id="fst">
+			<h1 class="card-header">شفرة الحداثيات و المثلثة</h1>
+			<div class="card-body">
+				<p>
+					شفرة الاحداثيات بتكتب السينات الاول و بعد كدة الصادات
+				</p>
+				<p>
+					و الشفرة المثلثة بتبدأ بالراسي و بعد كد الافقي
+				</p>
+				<P class="alert alert-info">علشان متنساش الرقم العشري الاول <i class="fas fa-smile"></i></P>
+				<h5>لو عاوز تجرب:</h5>
+				<p>
+					22 74 11 51 74 = فاكها
+				</p>
+			</div>
+		</div>
+		<hr>
+		<div class="card bg-dark text-white" id="fst">
+			<h1 class="card-header">شفرة الشرطه</h1>
+			<div class="card-body">
+				<p>
+					مقسومه لجزئين
+				</p>
+				<p>
+					و الشفرة المثلثة بتبدأ بالراسي و بعد كد الافقي
+				</p>
+				<P class="alert alert-info">علشان متنساش الرقم الشرطة او الشرتطين قبل الرقم <i class="fas fa-smile"></i>
+				</P>
+				<h5>لو عاوز تجرب:</h5>
+				<p>
+					/1 /2 /10 /1 //10 = ابرام
+				</p>
+			</div>
+		</div>
+		<hr>
+		<div class="card bg-dark text-white" id="fst">
+			<h1 class="card-header">شفرة المربعة</h1>
+			<div class="card-body">
+				<img src="bland/Capture.PNG" alt="">
+				<p>
+					بتكتب رقم المربع(زي الارقام بتاعت التلفون) و بعد كدة بتكتب الرقم الي جوة المربع
+				</p>
+
+				<h5>لو عاوز تجرب:</h5>
+				<p>
+					11 82 82 92 . 83 23 12 92 = الله محبة
+				</p>
+			</div>
+		</div>
+		<hr>
+	</div>
+	<!-- end hestory div -->
+	<!-- java scripy -->
+	<script>
+		let h1 = document.querySelector("#h1"),
+		select = document.querySelector("#select"),
+		hiscbtn = document.querySelector("#hiscbtn"),
+		infbtn = document.querySelector("#infbtn"),
+		conn = document.querySelector("#conn"),
+		clall = document.querySelector("#clall"),
+		infcbtn = document.querySelector("#infcbtn"),
+		clr = document.querySelector("#clr"),
+		hisbtn = document.querySelector("#hisbtn"),
+		btn = document.querySelector("#btn"),
+		bland = document.querySelector("#bland"),
+		his = document.querySelector("#his"),
+		inf = document.querySelector("#inf"),
+		img = document.querySelector("#img"),
+		inp = document.querySelector("#inp"),
+		letter = {},
+		data = JSON.parse(localStorage.getItem("dat")) || [];
+
+
+
+		select.addEventListener("input", () => {
+			this.value = "";
+			h1.innerHTML = select.value;
+			if (select.value === "شفرة المراية") {
+				letter = {
+					'ا': 'ض',
+					'ب': 'ط',
+					'ت': 'ظ',
+					'ث': 'ع',
+					'ج': 'غ',
+					'ح': 'ف',
+					'خ': 'ق',
+					'د': 'ك',
+					'ذ': 'ل',
+					'ر': 'م',
+					'ز': 'ن',
+					'س': 'ه',
+					'ش': 'و',
+					'ص': 'ي',
+					'ض': 'ا',
+					'ط': 'ب',
+					'ظ': 'ت',
+					'ع': 'ث',
+					'غ': 'ج',
+					'ف': 'ح',
+					'ق': 'خ',
+					'ك': 'د',
+					'ل': 'ذ',
+					'م': 'ر',
+					'ن': 'ز',
+					'ه': 'س',
+					'و': 'ش',
+					'ي': 'ص',
+
+				}
+			}
+			if (select.value === "الشفرة الرقمية") {
+				letter = {
+					1: 'ا',
+					2: 'ب',
+					3: 'ت',
+					4: 'ث',
+					5: 'ج',
+					6: 'ح',
+					7: 'خ',
+					8: 'د',
+					9: 'ذ',
+					10: 'ر',
+					11: 'ز',
+					12: 'س',
+					13: 'ش',
+					14: 'ص',
+					15: 'ض',
+					16: 'ط',
+					17: 'ظ',
+					18: 'ع',
+					19: 'غ',
+					20: 'ف',
+					21: 'ق',
+					22: 'ك',
+					23: 'ل',
+					24: 'م',
+					25: 'ن',
+					26: 'ه',
+					27: 'و',
+					28: 'ي',
+				}
+			}
+			if (select.value === "الشفرة المربعة") {
+				letter = {
+					'11': "ا",
+					'12': "ب",
+					'13': "ت",
+					'21': "ث",
+					'22': "ج",
+					'23': "ح",
+					'31': "خ",
+					'32': "د",
+					'33': "ذ",
+					'41': "ر",
+					'42': "ز",
+					'43': "س",
+					'51': "ش",
+					'52': "ص",
+					'53': "ض",
+					'61': "ط",
+					'62': "ظ",
+					'63': "ع",
+					'71': "غ",
+					'72': "ف",
+					'73': "ق",
+					'81': "ك",
+					'82': "ل",
+					'83': "م",
+					'91': "ن",
+					'92': "ه",
+					'93': "و",
+					'00': "ي",
+				}
+			}
+			if (select.value === "شفرة الشرطة") {
+				letter = {
+					'/1': "ا",
+					'/2': "ب",
+					'/3': "ت",
+					'/4': "ث",
+					'/5': "ج",
+					'/6': "ح",
+					'/7': "خ",
+					'/8': "د",
+					'/9': "ذ",
+					'/10': "ر",
+					'/11': "ز",
+					'/12': "س",
+					'/13': "ش",
+					'/14': "ص",
+					'//1': "ض",
+					'//2': "ط",
+					'//3': "ظ",
+					'//4': "ع",
+					'//5': "غ",
+					'//6': "ف",
+					'//7': "ق",
+					'//8': "ك",
+					'//9': "ل",
+					'//10': "م",
+					'//11': "ن",
+					'//12': "ه",
+					'//13': "و",
+					'//14': "ي",
+				}
+			}
+			if (select.value === "شفرة الاحداثيات") {
+				letter = {
+					'74': "ا",
+					'64': "ب",
+					'54': "ت",
+					'44': "ث",
+					'34': "ج",
+					'24': "ح",
+					'14': "خ",
+					'13': "د",
+					'23': "ذ",
+					'33': "ر",
+					'43': "ز",
+					'53': "س",
+					'63': "ش",
+					'73': "ص",
+					'72': "ض",
+					'62': "ط",
+					'52': "ظ",
+					'42': "ع",
+					'32': "غ",
+					'22': "ف",
+					'12': "ق",
+					'11': "ك",
+					'21': "ل",
+					'31': "م",
+					'41': "ن",
+					'51': "ه",
+					'61': "و",
+					'71': "ي",
+				}
+			}
+			if (select.value === "الشفرة المثلثة") {
+				letter = {
+					'11': "ا",
+					'12': "ب",
+					'22': "ت",
+					'13': "ث",
+					'23': "ج",
+					'33': "ح",
+					'14': "خ",
+					'24': "د",
+					'34': "ذ",
+					'44': "ر",
+					'15': "ز",
+					'25': "س",
+					'35': "ش",
+					'45': "ص",
+					'55': "ض",
+					'16': "ط",
+					'26': "ظ",
+					'36': "ع",
+					'46': "غ",
+					'56': "ف",
+					'66': "ق",
+					'17': "ك",
+					'27': "ل",
+					'37': "م",
+					'47': "ن",
+					'57': "ه",
+					'67': "و",
+					'77': "ي",
+				}
+			}
+			if (select.value === "شفرة اكس") {
+				letter = {
+					'11': "ا",
+					'12': "ب",
+					'13': "ت",
+					'14': "ث",
+					'15': "ج",
+					'16': "ح",
+					'17': "خ",
+					'21': "د",
+					'22': "ذ",
+					'23': "ر",
+					'24': "ز",
+					'25': "س",
+					'26': "ش",
+					'27': "ص",
+					'31': "ض",
+					'32': "ط",
+					'33': "ظ",
+					'34': "ع",
+					'35': "غ",
+					'36': "ف",
+					'37': "ق",
+					'41': "ك",
+					'42': "ل",
+					'43': "م",
+					'44': "ن",
+					'45': "ه",
+					'46': "و",
+					'47': "ي",
+				}
+			}
+			if (select.value === "شفرة الدومنة") {
+				letter = {
+					'00': "ا",
+					'10': "ب",
+					'20': "ت",
+					'30': "ث",
+					'40': "ج",
+					'50': "ح",
+					'60': "خ",
+					'11': "د",
+					'12': "ذ",
+					'13': "ر",
+					'14': "ز",
+					'15': "س",
+					'16': "ش",
+					'22': "ص",
+					'23': "ض",
+					'24': "ط",
+					'25': "ظ",
+					'26': "ع",
+					'33': "غ",
+					'34': "ف",
+					'35': "ق",
+					'36': "ك",
+					'44': "ل",
+					'45': "م",
+					'46': "ن",
+					'55': "ه",
+					'56': "و",
+					'66': "ي",
+					'01': "ئ",
+					'02': "ؤ",
+					'03': "ة",
+					'04': "ء",
+				}
+			}
+		})
+		hisbtn.addEventListener("click", () => {
+			his.style.right = "0";
+			conn.style.opacity = "0";
+		})
+		hiscbtn.addEventListener("click", () => {
+			his.style.right = "120%";
+			his.scroll(0, 0);
+			conn.style.opacity = "1";
+			conn.style.transitionDelay = "0.3s";
+			conn.style.transition = "0.2s";
+		})
+		infbtn.addEventListener("click", () => {
+			inf.style.left = "0";
+			conn.style.opacity = "0";
+		})
+		infcbtn.addEventListener("click", () => {
+			inf.style.left = "120%";
+			inf.scroll(0, 0);
+			conn.style.opacity = "1";
+			conn.style.transitionDelay = "0.3s";
+			conn.style.transition = "0.2s";
+
+		})
+		btn.addEventListener("click", () => {
+			if (inp.value != "") {
+				let bld = inp.value.trim().split(" ");
+				bld.forEach(num => {
+					bland.innerHTML += letter[num] || " ";
+				});
+				let newd = {
+					id: Date.now(),
+					title: bland.innerHTML,
+					type: select.value
+				}
+				if (select.value === "الشفرات الكشفية") {
+					alert("please choose the bland ......");
+					return;
+				}
+				data.push(newd)
+				localStorage.setItem("dat", JSON.stringify(data))
+				inp.value = "";
+			}
+
+			show()
+		})
+		show()
+		function show() {
+			let s = "";
+			for (let i = 0; i < data.length; i++) {
+				s += `
+				<div class="card bg-dark text-white mb-2">
+
+				<h1 class="card-header"><span onclick="del(${i})" class="btn btn-outline-primary btn-sm"><i class="fas fa-trash"></i></span>T${i + 1}</h1>
+				<div class="card-body">
+				<p class="card-text"> نوع الشفرة:${data[i].type}</p>
+				<p class="card-text">${data[i].title}</p>
+				</div>
+				</div>
+				`;
+				clall.innerHTML = `CLEAR ALL (${data.length})`
+				if (data.length > 1) {
+					clall.style.display = "block";
+				} else {
+					clall.style.display = "none";
+
+				}
+			}
+			hisa.innerHTML = s;
+		}
+		clall.addEventListener("click", () => {
+			localStorage.clear();
+			data = [];
+			show();
+			clall.style.display = "none";
+			his.style.right = "120%";
+			conn.style.opacity = "1";
+			conn.style.transitionDelay = "0.3s";
+			conn.style.transition = "0.2s";
+
+
+		})
+		function del(i) {
+			conn.style.opacity = "1";
+			data.splice(i, 1);
+			localStorage.setItem("dat", JSON.stringify(data));
+			his.style.right = "100%";
+			show();
+		}
+		clr.addEventListener("click", () => {
+			bland.innerHTML = "";
+
+		})
+	</script>
+	<script src="js/all.js"></script>
+	<script src="js/paper.js"></script>
+	<script src="js/jquery-3.7.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+</body>
+
+</html>
