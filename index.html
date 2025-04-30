@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/all.css">
+	<script src="js/scroll.js" type="text/javascript" charset="utf-8"></script>
 	<style>
 		* {
 			user-select: none;
@@ -105,14 +106,22 @@
 		#mod:hover {
 			transform: scale(1.02);
 		}
+		#footer{
+			direction: ltr;
+			width: 90%;
+			position: fixed;
+			bottom: 0;
+			right: 50%;
+			transform: translatex(50%);
+		}
 	</style>
 	<title>scouts app</title>
 </head>
 
 <body class="bg-dark text-white">
 	<div id="conn" class="container position-fixed">
-		<div class="navbar navbar-expand-xxl navbar-dark bg-dark">
-			<a href="" class="navbar-brand fs-1">الشفرات</a>
+		<div id="nav" class="navbar navbar-expand-xxl navbar-dark bg-dark">
+			<a class="navbar-brand fs-1">الشفرات</a>
 			<a href="#navs" data-bs-toggle="collapse" class="navbar-toggler shadow-none border-0 fs-1">
 				<i class="navbar-toggler-icon"></i>
 			</a>
@@ -159,6 +168,11 @@
 
 		<div class="mt-4" id="bland">
 
+		</div>
+		<div id="footer" class="fw-bolder text-center">
+			<hr />
+			© 2025 alrights : <a class="text-info">ABRAAM_ATEF.COM</a>
+			<hr />
 		</div>
 	</div>
 	<!-- hestory div -->
@@ -669,6 +683,67 @@
 			bland.innerHTML = "";
 
 		})
+		//scroll Reval 
+		ScrollReveal().reveal('#h1', {
+    delay: 500,
+    opacity: 0,
+    duration: 1000,
+    origin: 'top',
+    distance: '50px',
+    reset: true,
+    interval: 150,
+    easing: 'ease-in-out',
+});
+ScrollReveal().reveal('#nav', {
+    delay: 500,
+    opacity: 0,
+    duration: 1000,
+    origin: 'top',
+    distance: '50px',
+    reset: true,
+    interval: 150,
+    easing: 'ease-in-out',
+});
+ScrollReveal().reveal('#select', {
+    delay: 500,
+    opacity: 0,
+    duration: 900,
+    origin: 'top',
+    distance: '50px',
+    reset: true,
+    interval: 150,
+    easing: 'ease-in-out',
+});
+ScrollReveal().reveal('#btn', {
+    delay: 300,
+    opacity: 0,
+    duration: 1000,
+    origin: 'top',
+    distance: '50px',
+    reset: true,
+    interval: 150,
+    easing: 'ease-in-out',
+});
+ScrollReveal().reveal('#inp', {
+    delay: 300,
+    opacity: 0,
+    duration: 1000,
+    origin: 'top',
+    distance: '50px',
+    reset: true,
+    interval: 150,
+    easing: 'ease-in-out',
+});
+ScrollReveal().reveal('#footer', {
+    delay: 200,
+    opacity: 0,
+    duration: 1000,
+    origin: 'bottom',
+    distance: '50px',
+    reset: true,
+    interval: 150,
+    easing: 'ease-in-out',
+});
 	</script>
 	<script src="js/all.js"></script>
 	<script src="js/paper.js"></script>
